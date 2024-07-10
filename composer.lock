@@ -4,11 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
+
     "content-hash": "1b11597d27c4dd431684feb159ec3890",
-=======
+
+
+    "content-hash": "a2aa76814548dbcc79982346b8b84daa",
+
     "content-hash": "73b59e4da70ff4e139fa58ec6cb55575",
->>>>>>> main
+
     "packages": [
         {
             "name": "brick/math",
@@ -1821,6 +1824,7 @@
             "time": "2024-01-28T23:22:08+00:00"
         },
         {
+
             "name": "maximebf/debugbar",
             "version": "v1.22.3",
             "source": {
@@ -5836,8 +5840,7 @@
             "time": "2024-04-12T11:20:37+00:00"
         },
         {
-<<<<<<< HEAD
-=======
+
             "name": "barryvdh/laravel-ide-helper",
             "version": "v3.0.0",
             "source": {
@@ -6175,7 +6178,7 @@
             "time": "2024-01-30T19:34:25+00:00"
         },
         {
->>>>>>> main
+
             "name": "fakerphp/faker",
             "version": "v1.23.1",
             "source": {
@@ -6490,6 +6493,7 @@
             "time": "2024-07-05T16:01:51+00:00"
         },
         {
+
             "name": "maximebf/debugbar",
             "version": "v1.22.3",
             "source": {
@@ -6558,6 +6562,7 @@
             "time": "2024-04-03T19:39:26+00:00"
         },
         {
+
             "name": "mockery/mockery",
             "version": "1.6.12",
             "source": {
