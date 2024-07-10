@@ -5,8 +5,13 @@
         "This file is @generated automatically"
     ],
 
+    "content-hash": "1b11597d27c4dd431684feb159ec3890",
+
+
     "content-hash": "a2aa76814548dbcc79982346b8b84daa",
+
     "content-hash": "73b59e4da70ff4e139fa58ec6cb55575",
+
     "packages": [
         {
             "name": "brick/math",
@@ -5835,6 +5840,7 @@
             "time": "2024-04-12T11:20:37+00:00"
         },
         {
+
             "name": "barryvdh/laravel-ide-helper",
             "version": "v3.0.0",
             "source": {
@@ -6172,6 +6178,7 @@
             "time": "2024-01-30T19:34:25+00:00"
         },
         {
+
             "name": "fakerphp/faker",
             "version": "v1.23.1",
             "source": {
