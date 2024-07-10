@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 Route::get('/product', function () {
     return 'La liste de produits';
+});
 
 Route::get('/customer', function () {
     return 'La liste des clients';
