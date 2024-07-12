@@ -28,4 +28,27 @@ Route::get('/product/{id}', function ($id){
 
 );
 
+Route::get('/orders', function () {
+    return "La liste des commandes";
+}
+);
 
+Route::get('/orders/{id}', function ($id){
+    return "Fiche du commande id $id";
+});
+
+Route::get('/shipments', function (){
+    return "La liste des envoi";
+});
+
+Route::get('/shipments/{id}', function ($id){
+    return "Fiche de l'envoi $id";
+});
+
+Route::get('/categories', function (){
+   return "liste des catégories";
+});
+
+Route::get('/categories/{id}', function ($id){
+        return "Catégorie $id";
+});
