@@ -12,10 +12,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
-<<<<<<< HEAD
-=======
         "barryvdh/laravel-ide-helper": "^3.0",
->>>>>>> main
         "fakerphp/faker": "^1.23",
         "laravel/pint": "^1.13",
         "laravel/sail": "^1.26",
@@ -68,5 +65,5 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true
-    
+
 }
