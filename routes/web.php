@@ -27,3 +27,5 @@ Route::get('/product/{id}', function ($id){
 }
 
 );
+
+
