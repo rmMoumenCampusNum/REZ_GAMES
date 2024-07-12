@@ -1,12 +1,11 @@
 <?php
 use App\Http\Controllers\OrdersConroller;
-use App\Http\Controllers\UserController;
-use app\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
@@ -33,4 +32,18 @@ Route::get('/shipments/{id}', function ($id) {
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
-Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showId']);
+Route::get('/shipments', function (){
+    return "La liste des envoi";
+});
+
+Route::get('/shipments/{id}', function ($id){
+    return "Fiche de l'envoi $id";
+});
+
+Route::get('/categories', function (){
+   return "liste des catégories";
+});
+
+Route::get('/categories/{id}', function ($id){
+        return "Catégorie $id";
+});
