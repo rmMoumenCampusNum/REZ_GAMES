@@ -14,7 +14,7 @@ Route::get('/product', function () {
 
 
 Route::get('/customer', function () {
-    return 'La liste des clients';
+    return ['Tableau' => 'La liste des clients'];
 });
 
 Route::get('/customer/{id}', function($id){
