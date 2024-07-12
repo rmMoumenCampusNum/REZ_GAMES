@@ -8,7 +8,11 @@ use app\Http\Controllers\ItemsController;
 Route::get('/', function () {
     return view('welcome');
 });
+// route Items / Johan
+Route::get('/items', [ItemController::class, 'index']);
 
+
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 // ROUTE pour les Items / Johan
@@ -31,13 +35,13 @@ Route::get('/customer', function () {
 // route pour la liste des produits et les détails d'un produit. // Johan
 Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
 {
+=======
+>>>>>>> 11d163a (route+controller Items)
     return ['La liste des produits']);
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
-{
-})
 
 
-});
+
 Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
 >>>>>>> 17637eb (route+controller Items)
