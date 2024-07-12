@@ -6,17 +6,15 @@ use app\Http\Controllers\ItemsController;
 Route::get('/', function () {
     return view('welcome');
 });
+// route Items / Johan
+Route::get('/items', [ItemController::class, 'index']);
 
-// route pour la liste des produits et les détails d'un produit. // Johan
-Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
-{
+
     return ['La liste des produits']);
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
-{
-})
 
 
-});
+
 Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
 });
