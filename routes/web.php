@@ -12,7 +12,6 @@ return ['La liste des produits'];
 
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
 
-
 Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
 });
