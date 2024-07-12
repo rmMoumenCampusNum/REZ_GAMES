@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
 
-abstract class ItemsController extends Controller
+class ItemsController extends Controller
 {
 
     public function index()
