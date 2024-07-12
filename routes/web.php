@@ -1,16 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// route des produits items vers
-Route::get('/product', function (Request $request) {
-    return ['La liste de produits' => input('La liste des clients');
-
-});
+// route pour la liste des produits et les détails d'un produit.
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
 
 
 Route::get('/customer', function () {
