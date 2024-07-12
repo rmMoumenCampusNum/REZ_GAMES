@@ -26,3 +26,8 @@ Route::get('/product/{id}', function ($id){
 }
 
 );
+
+
+Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
+
+Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showId']);
