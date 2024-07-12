@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrdersConroller;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,15 +13,13 @@ Route::get('/product', function () {
     return 'La liste de produits';
 });
 
+//assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
+Route::get('/user', [UserController::class, 'showAll']);
 
-Route::get('/customer', function () {
-    return ['Tableau' => 'La liste des clients'];
-});
+// assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
+Route::get('/user/{id}',[UserController::class,'showOne']);
 
-Route::get('/customer/{id}', function($id){
-    return "Fiche du client $id";
 
-});
 
 // Route pour la fiche détail d'un produit
 Route::get('/product/{id}', function ($id){
