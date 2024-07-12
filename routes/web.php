@@ -9,11 +9,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 // ROUTE pour les Items / Johan
 Route::get('/items', function () {
     return "La liste des Items";
 });
+
 //ASSIGNATION CONTROLLER Items /Johan
 Route::get('/items', [ItemController::class, 'index']);
 
@@ -50,7 +50,7 @@ Route::get('/shipments/{id}', function ($id) {
     return "Fiche de l'envoi $id";
 });
 
-);
+
 
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);

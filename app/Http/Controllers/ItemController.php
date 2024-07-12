@@ -9,6 +9,6 @@ abstract class ItemController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        return "Liste des produits ";
     }
 }
