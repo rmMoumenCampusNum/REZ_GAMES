@@ -29,11 +29,9 @@ Route::get('/product/{id}', function ($id){
 
 );
 
-Route::get('/orders', [OrdersConroller::class, 'orders']);
+Route::get('/orders', [OrdersConroller::class, 'showAllOrders']);
 
-Route::get('/orders/{id}', function ($id){
-    return "Fiche du commande id $id";
-});
+Route::get('/orders/{id}', [OrdersConroller::class, 'showOneOrder']);
 
 Route::get('/shipments', function (){
     return "La liste des envoi";
