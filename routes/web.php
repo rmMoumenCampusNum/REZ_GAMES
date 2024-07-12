@@ -11,6 +11,7 @@ Route::get('/', function () {
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
 return ['La liste des produits'];
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 
@@ -42,6 +43,9 @@ Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
     return ['La liste des produits']);
 =======
 >>>>>>> dc18802 (route+controller Items)
+=======
+
+>>>>>>> f53cb59 (route+controller Items)
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
 
 
