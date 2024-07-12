@@ -10,7 +10,9 @@ Route::get('/', function () {
 });
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
+return ['La liste des produits'];
 
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -38,8 +40,9 @@ Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
 =======
 >>>>>>> 11d163a (route+controller Items)
     return ['La liste des produits']);
+=======
+>>>>>>> dc18802 (route+controller Items)
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
-
 
 
 Route::get('/Users', function () {
