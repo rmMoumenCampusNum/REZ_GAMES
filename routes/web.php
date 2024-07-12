@@ -16,12 +16,9 @@ Route::get('/user', [UserController::class, 'showAll']);
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 
-Route::get('/orders', [OrdersConroller::class, 'orders']);
+Route::get('/orders', [OrdersConroller::class, 'showAllOrders']);
 
-Route::get('/orders/{id}', function ($id) {
-    return "Fiche du commande id $id";
-});
-
+Route::get('/orders/{id}', [OrdersConroller::class, 'showOneOrder']);
 Route::get('/shipments', function () {
     return "La liste des envoi";
 });
