@@ -8,11 +8,9 @@ Route::get('/', function () {
 });
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
+return ['La liste des produits'];
 
-
-    return ['La liste des produits']);
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
-
 
 
 Route::get('/Users', function () {
