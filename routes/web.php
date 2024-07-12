@@ -48,7 +48,6 @@ Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
 >>>>>>> f53cb59 (route+controller Items)
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
 
-
 Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
 >>>>>>> 17637eb (route+controller Items)
