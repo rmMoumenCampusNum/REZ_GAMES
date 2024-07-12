@@ -24,7 +24,6 @@ Route::get('/customer', function () {
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
 
-
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 
@@ -48,8 +47,6 @@ Route::get('/shipments', function () {
 Route::get('/shipments/{id}', function ($id) {
     return "Fiche de l'envoi $id";
 });
-
-
 
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
