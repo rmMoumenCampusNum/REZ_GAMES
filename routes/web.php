@@ -7,11 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/product', function () {
-    return 'La liste de produits';
-});
-
+// en cours controller
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
 
 Route::get('/customer', function () {
     return ['Tableau' => 'La liste des clients'];
