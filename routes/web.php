@@ -3,15 +3,22 @@ use App\Http\Controllers\OrdersConroller;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 // ROUTE pour les Items / Johan
 Route::get('/items', function () {
     return "La liste des Items";
 });
+=======
+// route pour la liste des produits et les détails d'un produit.
+Route::get('/product', [ProductController::class, 'index']);
+Route::get('/product/{id}', [ProductController::class, 'show']);
+>>>>>>> e09784a (route "La liste des produits")
 
 //ASSIGNATION CONTROLLER Items /Johan
 Route::get('/items', [ItemController::class, 'index']);
