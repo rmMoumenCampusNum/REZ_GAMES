@@ -1,18 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use app\Http\Controllers\ItemsController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// route pour la liste des produits et les détails d'un produit.
-Route::get('/product', [ProductController::class, 'index']);
-Route::get('/product/{id}', [ProductController::class, 'show']);
+// route pour la liste des produits et les détails d'un produit. // Johan
+Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
+{
+    return ['La liste des produits']);
+Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
+{
+})
 
 
-Route::get('/customer', function () {
+});
+Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
 });
 
@@ -20,10 +25,3 @@ Route::get('/customer/{id}', function ($id) {
     return "Fiche du client $id";
 
 });
-
-// Route pour la fiche détail d'un produit
-Route::get('/product/{id}', function ($id) {
-    return "Fiche du produit $id";
-}
-
-);
