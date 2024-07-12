@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrdersConroller;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,10 +29,7 @@ Route::get('/product/{id}', function ($id){
 
 );
 
-Route::get('/orders', function () {
-    return "La liste des commandes";
-}
-);
+Route::get('/orders', [OrdersConroller::class, 'orders']);
 
 Route::get('/orders/{id}', function ($id){
     return "Fiche du commande id $id";
