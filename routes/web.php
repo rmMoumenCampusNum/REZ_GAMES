@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
-Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
+Route::get('/items/{id}', [\app\Http\Controllers\ItemController::class, 'show']);
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
