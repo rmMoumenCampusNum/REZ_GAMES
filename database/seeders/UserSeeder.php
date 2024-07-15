@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(5)->creat();
+        \App\Models\User::factory(5)->create();
         
     }
 }

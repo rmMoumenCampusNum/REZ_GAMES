@@ -29,8 +29,8 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'Adress' => Str::random(50),
-            'Code postale' => Str::random(50),
-            'ville' => Str::random(50),
+            'Code postale' => Str::random(5),
+            'ville' => Str::random(10),
         ];
     }
 
