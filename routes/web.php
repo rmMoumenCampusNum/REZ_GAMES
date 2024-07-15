@@ -47,3 +47,7 @@ Route::get('/categories', function (){
 Route::get('/categories/{id}', function ($id){
         return "Catégorie $id";
 });
+
+Route::get('/card/{id}', function ($id){
+    return "Card $id";
+});
