@@ -10,11 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('Items', function (Blueprint $table) {
+        Schema::create('_item', function (Blueprint $table) {
+
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image');
+            $table->float('price');
             $table->text(column: 'description');
             $table->timestamps();
             $table->softDeletes();
@@ -26,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('_item');
     }
 };
