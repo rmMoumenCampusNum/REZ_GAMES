@@ -8,32 +8,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ROUTE pour les Items / Johan
-Route::get('/items', function () {
-    return "La liste des Items";
-});
-
-//ASSIGNATION CONTROLLER Items /Johan
+// route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
-
-
-Route::get('/customer', function () {
-    return 'La liste des clients';
-});
+Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
-
-
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
-
-
-
-// Route pour la fiche détail d'un produit.
-Route::get('/product/{id}', function ($id){
-    return "Fiche du produit $id";
-});
 
 Route::get('/orders', [OrdersConroller::class, 'orders']);
 
@@ -48,9 +30,6 @@ Route::get('/shipments', function () {
 Route::get('/shipments/{id}', function ($id) {
     return "Fiche de l'envoi $id";
 });
-
-
-
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
