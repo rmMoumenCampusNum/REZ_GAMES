@@ -9,6 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [\app\Http\Controllers\ItemController::class, 'show']);
@@ -18,12 +19,9 @@ Route::get('/user', [UserController::class, 'showAll']);
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 
-Route::get('/orders', [OrdersConroller::class, 'orders']);
+Route::get('/orders', [OrdersConroller::class, 'showAllOrders']);
 
-Route::get('/orders/{id}', function ($id) {
-    return "Fiche du commande id $id";
-});
-
+Route::get('/orders/{id}', [OrdersConroller::class, 'showOneOrder']);
 Route::get('/shipments', function () {
     return "La liste des envoi";
 });
@@ -34,4 +32,18 @@ Route::get('/shipments/{id}', function ($id) {
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
-Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showId']);
+Route::get('/shipments', function (){
+    return "La liste des envoi";
+});
+
+Route::get('/shipments/{id}', function ($id){
+    return "Fiche de l'envoi $id";
+});
+
+Route::get('/categories', function (){
+   return "liste des catégories";
+});
+
+Route::get('/categories/{id}', function ($id){
+        return "Catégorie $id";
+});
