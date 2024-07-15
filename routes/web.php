@@ -9,6 +9,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 // route Items / Johan
+<<<<<<< HEAD
 Route::get('/items', [ItemController::class, 'index']);
 return ['La liste des produits'];
 <<<<<<< HEAD
@@ -47,6 +48,11 @@ Route::get('/items', [\app\Http\Controllers\ItemsController::class, 'index']);
 
 >>>>>>> f53cb59 (route+controller Items)
 Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
+=======
+Route::get('/items', [ItemsController::class, 'index']);
+
+Route::get('/items/{id}', [ItemsController::class, 'show']);
+>>>>>>> 423f682 (Update for rebase)
 
 Route::get('/Users', function () {
     return ['Tableau' => 'La liste des clients'];
