@@ -7,10 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 // route Items / Johan
-Route::get('/items', [ItemController::class, 'index']);
-return ['La liste des produits'];
+Route::get('/items', [ItemsController::class, 'index']);
 
-Route::get('/items/{id}', [\app\Http\Controllers\ItemsController::class, 'show']);
+Route::get('/items/{id}', [ItemsController::class, 'show']);
 
 
 Route::get('/Users', function () {
