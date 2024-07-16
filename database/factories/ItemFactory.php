@@ -17,15 +17,13 @@ class ItemFactory extends Factory
      */
     public function definition(): array
     {
-        $title = $this->faker->sentence();
-
 
         return [
 
-            'title' => $title,
-            'description' => $this->faker->paragraph(),
-            'price' => $this->faker->randomFloat(2, 10),
-            'image' => $this->faker->imageUrl(),
+            'description' => fake()->paragraph(),
+            'title' => fake()->word(),
+            'price' => fake()->randomFloat(2, 10, 100), // Prix aléatoire entre 10 et 100 avec 2 décimales
+            'image' =>fake()->imageUrl(),
         ];
     }
 }
