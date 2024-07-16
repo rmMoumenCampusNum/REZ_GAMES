@@ -15,11 +15,12 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->float('price');
             $table->text(column: 'description');
             $table->timestamps();
             $table->softDeletes();
         });
+
+
     }
 
     /**
