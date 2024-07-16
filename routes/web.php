@@ -33,6 +33,8 @@ Route::get('/shipments/{id}', function ($id) {
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
+Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showID']);
+
 Route::get('/shipments', function (){
     return "La liste des envoi";
 });
@@ -41,12 +43,4 @@ Route::get('/shipments/{id}', function ($id){
     return "Fiche de l'envoi $id";
 });
 
-Route::get('/categories', function (){
-   return "liste des catégories";
-});
 
-Route::get('/categories/{id}', function ($id){
-        return "Catégorie $id";
-});
-
-Route::get('/categories', [CategoriesController::class, 'show']);
