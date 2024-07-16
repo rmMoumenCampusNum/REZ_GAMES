@@ -10,7 +10,7 @@ class User extends Model
     use HasFactory;
 
     protected $filable = ['title', 'decription', 'email'];
-,
+
     public function Card()
     {
     return $this->belongsTo(Card::class);
