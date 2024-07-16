@@ -21,9 +21,8 @@ class ItemFactory extends Factory
 
 
         return [
-            //
+
             'title' => $title,
-            'slug' => Str::slug($title),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 10),
             'image' => $this->faker->imageUrl(),

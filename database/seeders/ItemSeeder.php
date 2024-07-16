@@ -13,6 +13,6 @@ class ItemSeeder extends Seeder
     public function run(): void
     {
         // creation 5 user random
-        \App\Models\User::factory(5)->create();
+        \App\Models\Item::factory(5)->create();
     }
 }
