@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
 use app\Http\Controllers\ShipmentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,3 +48,5 @@ Route::get('/categories', function (){
 Route::get('/categories/{id}', function ($id){
         return "Catégorie $id";
 });
+
+Route::get('/categories', [CategoriesController::class, 'show']);
