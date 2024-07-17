@@ -2,23 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\Item;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- */
 class ItemFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Item::class;
+
+    public function definition()
     {
         return [
-            'titre' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
-            'price' => $this->faker->randomFloat(2, 1, 1000), // Prix entre 1 et 1000
+            'titre' => $this->faker->sentence,
+            'Description' => $this->faker->paragraph,
+            'price' => $this->faker->randomFloat(2, 10, 100), // Prix aléatoire entre 10 et 100
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
+

@@ -14,7 +14,8 @@ class Shipment extends Seeder
     public function run(): void
     {
         DB::table('shipments')->insert([
-           'created_at' => now(),
+            'user_id' => 1,
+            'created_at' => now(),
            'updated_at' => now(),
         ]);
     }
