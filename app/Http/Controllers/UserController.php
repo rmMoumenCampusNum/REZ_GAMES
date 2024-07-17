@@ -8,32 +8,27 @@ use Illuminate\Support\ViewErrorBag;
 
 class UserController extends Controller
 {
-
+    /**
+     * Fonction Read du CRUD
+     */
     public function showOne(string $id)
     {
-        return "User controller Ok with $id";
+        return response()->json(User::findOrFail($id));
     }
     public function showAll()
     {
 
-        return "User controller Ok for all";
+        return response()->json(User::all());
+    }
 
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $user = User::all();
-        return response() ->json($user);
-    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+
+        return "Nouvelle entrée crée";
     }
 
     /**
@@ -41,31 +36,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request()->validate(User::$rules);
+        $user = User::create($request->all());
+        return "Stored";
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return response()->json($user);
     }
 
     /**
@@ -73,6 +57,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id)->delete();
+        return "user effacé";
     }
 }

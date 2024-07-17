@@ -9,7 +9,10 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $filable = ['title', 'decription', 'email'];
+    static $rules = [
+        'name' => 'required',
+        'email' => 'required',
+    ];
 
     public function Card()
     {

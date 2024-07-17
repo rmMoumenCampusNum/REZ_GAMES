@@ -17,8 +17,10 @@ Route::get('/items/{id}', [\app\Http\Controllers\ItemController::class, 'show'])
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
-// assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user/store', [UserController::class, 'store']);
+Route::delete('user/d{id}', [UserController::class, 'destroy']);
 
 Route::get('/orders', [OrdersController::class, 'showAllOrders']);
 Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
