@@ -9,13 +9,15 @@ class OrdersController extends Controller
 {
     public function showAllOrders ()
     {
-      $orders = Order::all();
-      return response()->json($orders);
+      return response()->json(Order::all());
     }
 
     public function showOneOrder ($id)
     {
-        $order = Order::find($id);
-        return response()->json($order);
+        return response()->json(Order::find($id));
+    }
+
+    public function createOrder (Request $request){
+        $order = new Order();
     }
 }
