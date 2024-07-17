@@ -16,6 +16,7 @@ class Shipment extends Seeder
         DB::table('shipments')->insert([
            'created_at' => now(),
            'updated_at' => now(),
+            'user_id' => 1,
         ]);
     }
 }
