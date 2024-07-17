@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
 use app\Http\Controllers\ShipmentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +33,8 @@ Route::get('/shipments/{id}', function ($id) {
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
+Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showID']);
+
 Route::get('/shipments', function (){
     return "La liste des envoi";
 });
@@ -40,13 +43,7 @@ Route::get('/shipments/{id}', function ($id){
     return "Fiche de l'envoi $id";
 });
 
-Route::get('/categories', function (){
-   return "liste des catégories";
-});
 
-Route::get('/categories/{id}', function ($id){
-        return "Catégorie $id";
-});
 
 Route::get('/card/{id}', function ($id){
     return "Card $id";
