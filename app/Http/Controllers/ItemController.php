@@ -8,59 +8,59 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Affiche la liste des items
     public function index()
     {
-        //
+        $items = Item::all();
+        return response()->json($items);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Affiche un item spécifique par son ID
+    public function show($id)
     {
-        //
+        $item = Item::find($id);
+
+        if ($item) {
+            return response()->json($item);
+        } else {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Crée un nouvel item
     public function store(StoreItemRequest $request)
     {
-        //
+        // Création de l'item
+        $item = Item::create($request->validated());
+
+        // Retourner une réponse JSON
+        return response()->json($item, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Item $item)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Affiche le formulaire d'édition pour un item spécifique
     public function edit(Item $item)
     {
-        //
+        // Retourner les données de l'item pour l'édition
+        return response()->json($item);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Met à jour un item spécifique
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        // Mise à jour de l'item
+        $item->update($request->validated());
+
+        // Retourner une réponse JSON
+        return response()->json($item, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Supprime un item spécifique
     public function destroy(Item $item)
     {
-        //
+        // Suppression de l'item
+        $item->delete();
+
+        // Retourner une réponse JSON
+        return response()->json(['message' => 'Item deleted'], 200);
     }
 }
