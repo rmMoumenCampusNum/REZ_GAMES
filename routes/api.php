@@ -2,6 +2,7 @@
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
+use App\Http\Controllers\CategoriesController;
 use app\Http\Controllers\ShipmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,3 +55,5 @@ Route::get('/card/{id}', function ($id){
     return "Card $id";
 });
 
+
+Route::apiResource('categories', CategoriesController::class);
