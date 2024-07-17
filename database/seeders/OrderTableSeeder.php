@@ -15,7 +15,7 @@ class OrderTableSeeder extends Seeder
     {
         DB::table('orders')->insert([
             'user_id' => 1,
-            'shipments_id' => 1,
+            'shipment_id' => 1,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
