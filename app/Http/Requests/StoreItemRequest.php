@@ -2,7 +2,12 @@
 
 namespace App\Http\Requests;
 
+
+
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class StoreItemRequest extends FormRequest
 {
@@ -24,5 +29,17 @@ class StoreItemRequest extends FormRequest
         return [
             //
         ];
+    }
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'titre' => 'required',
+            'Description' => 'required',
+            'price' =>  'required|numeric',
+        ]);
+
+        // The blog post is valid...
+
+        return redirect('/posts');
     }
 }
