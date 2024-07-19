@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\OrdersConroller;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
 use app\Http\Controllers\ShipmentController;
@@ -20,10 +20,16 @@ Route::get('/items/{id}', [\app\Http\Controllers\ItemController::class, 'show'])
 Route::get('/user', [UserController::class, 'showAll']);
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
+Route::post('/user', [UserController::class, 'store']);
+Route::post('/user/{id}', [UserController::class, 'update']);
 
-Route::get('/orders', [OrdersConroller::class, 'showAllOrders']);
 
-Route::get('/orders/{id}', [OrdersConroller::class, 'showOneOrder']);
+Route::get('/orders', [OrdersController::class, 'showAllOrders']);
+Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
+Route::post('/orders', [OrdersController::class, 'store']); // Créer une commande
+Route::delete('/orders/{id}', [OrdersController::class, 'destroy']); // Supprimer une commande
+Route::put('/orders/{id}', [OrdersController::class, 'update']);
+
 Route::get('/shipments', function () {
     return "La liste des envoi";
 });

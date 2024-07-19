@@ -22,6 +22,8 @@ Route::get('/user/{id}', [UserController::class, 'showOne']);
 
 Route::get('/orders', [OrdersController::class, 'showAllOrders']);
 Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
+Route::post('/orders/create', [OrdersController::class, 'store']);
+
 
 Route::get('/shipments', function () {
     return "La liste des envoi";
