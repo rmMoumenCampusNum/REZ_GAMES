@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->foreignId('item_id')->constrained('_items')->onDelete('cascade'); // Ajoutez la colonne item_id comme clé étrangère
             $table->timestamps(); // Ajoutez les colonnes created_at et updated_at
 
         });
