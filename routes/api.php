@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShipmentsController;
 use Illuminate\Http\Request;
@@ -17,8 +17,8 @@ Route::get('/user', function (Request $request) {
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
 Route::post('/items', [ItemController::class, 'store']);
-
 Route::put('/items/{id}', [ItemController::class, 'update']);
+Route::patch('/items/{id}', [ItemController::class, 'update']);
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];

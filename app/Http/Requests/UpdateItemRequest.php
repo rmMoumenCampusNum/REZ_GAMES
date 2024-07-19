@@ -22,10 +22,11 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'titre' => 'required',
-            'Description' => 'required',
-            'price' =>  'required|numeric',
-            'image' => 'required|numeric',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric',
+            'created_at' => 'date',
+            'updated_at' => 'date',
         ];
     }
 }

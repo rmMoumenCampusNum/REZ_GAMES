@@ -12,9 +12,10 @@ class ItemFactory extends Factory
     public function definition()
     {
         return [
+            'id' => null,
             'titre' => $this->faker->sentence,
             'Description' => $this->faker->paragraph,
-            'price' => $this->faker->randomFloat(2, 10, 100), // Prix aléatoire entre 10 et 100
+            'price' => $this->faker->randomFloat(2, 10, 100),
             'created_at' => now(),
             'updated_at' => now(),
         ];

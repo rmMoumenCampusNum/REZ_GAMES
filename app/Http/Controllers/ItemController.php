@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreItemRequest;
-use App\Http\Requests\UpdateItemRequest;
+use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Http\Requests\UpdateItemRequest;
+
 
 class ItemController extends Controller
 {
@@ -28,14 +29,31 @@ class ItemController extends Controller
     }
 
     // Crée un nouvel item
-    public function store(StoreItemRequest $request)
+    public function store(Request $request)
     {
-        // Création de l'item
-        $item = Item::create($request->validated());
 
-        // Retourner une réponse JSON
+// Validation des données de la requête
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'Description' => 'required|string',
+            'price' => 'required|numeric',
+
+
+        ]);
+
+        // Création d'un nouvel item
+        $item = Item::create($request->all());
+
+        /* $item = new Item;
+        $item->titre = $request->titre;
+        $item->Description = $request->Description;
+        $item->price = $request->price;
+        $item->save(); */
+
+        // Retourner une réponse JSON avec l'item créé
         return response()->json($item, 201);
     }
+
 
     // Affiche le formulaire d'édition pour un item spécifique
     public function edit(Item $item)
@@ -64,3 +82,6 @@ class ItemController extends Controller
         return response()->json(['message' => 'Item deleted'], 200);
     }
 }
+
+
+
