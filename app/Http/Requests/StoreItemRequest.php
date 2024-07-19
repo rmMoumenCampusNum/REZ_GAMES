@@ -36,6 +36,9 @@ class StoreItemRequest extends FormRequest
             'titre' => 'required',
             'Description' => 'required',
             'price' =>  'required|numeric',
+            'image' => 'required|numeric',
+
+
         ]);
 
         // The blog post is valid...
