@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\OrdersConroller;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
@@ -19,44 +18,25 @@ Route::post('/items', [ItemController::class, 'create']);
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
+
 Route::get('/user', [UserController::class, 'showAll']);
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 Route::delete('user/d{id}', [UserController::class, 'destroy']);
-Route::get('/user/create', [UserController::class, 'store']);
-Route::post('/user/create/submit', [UserController::class, 'submit']);
-Route::get('/user/edit', [UserController::class, 'edit']);
-Route::post('/user/edit/submit', [UserController::class, 'update']);
+Route::post('/user/create', [UserController::class, 'store']);
+Route::put('/user/edit/{id}', [UserController::class, 'update']);
+
+
+
 
 Route::get('/orders', [OrdersController::class, 'showAllOrders']);
-
 Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
-Route::get('/shipments', function () {
-    return "La liste des envoi";
-});
-
-Route::get('/shipments/{id}', function ($id) {
-    return "Fiche de l'envoi $id";
-});
+Route::get('/shipments', function () {return "La liste des envoi";});
+Route::get('/shipments/{id}', function ($id) { return "Fiche de l'envoi $id";});
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
-
-Route::get('/shipments', function () {
-    return "La liste des envoi";
-});
-
-Route::get('/shipments/{id}', function ($id) {
-    return "Fiche de l'envoi $id";
-});
-
-Route::get('/categories', function () {
-    return "liste des catégories";
-});
-
-Route::get('/categories/{id}', function ($id) {
-    return "Catégorie $id";
-});
-
-Route::get('/card/{id}', function ($id) {
-    return "Card $id";
-});
+Route::get('/shipments', function () {return "La liste des envoi";});
+Route::get('/shipments/{id}', function ($id) {return "Fiche de l'envoi $id";});
+Route::get('/categories', function () {return "liste des catégories";});
+Route::get('/categories/{id}', function ($id) {return "Catégorie $id";});
+Route::get('/card/{id}', function ($id) {return "Card $id";});
 

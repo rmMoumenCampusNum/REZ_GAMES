@@ -22,36 +22,49 @@ class UserController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
 
-        return "Nouvelle entrée crée";
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request()->validate(User::$rules);
-        $user = User::create($request->all());
-        return "Stored";
+        // Validate the incoming request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'Adress' => 'required|string|max:255',
+            'Code postale' => 'required|string|max:10',
+            'ville' => 'required|string|max:100',
+            'password'=> 'required|string|max:55',
+            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
+        ]);
+            // Create a new user with the validated data
+            $user = User::create($request->all());
+            // Return a success response with the created user data
+            return response()->json([
+                'message' => 'User created successfully',
+                'user' => $user,
+            ], 201);
     }
-
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'id'=>'required',
+            'name' => 'required',
+            'email' => 'required', 'created_at' => 'required|date_format:Y-m-d H:i:s',
+            'updated_at' => 'required|date_format:Y-m-d H:i:s',
+        ]);
         $user = User::findOrFail($id);
         $user->update($request->all());
         return response()->json($user);
     }
-
+  
     /**
      * Remove the specified resource from storage.
      */
