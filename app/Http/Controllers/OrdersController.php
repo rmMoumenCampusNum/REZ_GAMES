@@ -38,13 +38,17 @@ class OrdersController extends Controller
     // Mettre à jour une commande
     public function update(Request $request, $id)
     {
-        // Trouver la commande par son id
-        $order = Order::findOrFail($id);
 
         // Valider les données reçues si nécessaire
         $validated = $request->validate([
-
+            'user_id' => 'required|integer|exists:users,id',
+            'created_at' => 'required|date_format:Y-m-d H:i:s',
+            'updated_at' => 'required|date_format:Y-m-d H:i:s',
+            'shipments_id' => 'required|integer',
         ]);
+
+        // Trouver la commande par son id
+        $order = Order::findOrFail($id);
 
         // Mettre à jour la commande avec les données validées
         $order->update($validated);
