@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CardsController extends Controller
+class CardController extends Controller
 {
        public function ShowOneOrder ($id) {
         return [
