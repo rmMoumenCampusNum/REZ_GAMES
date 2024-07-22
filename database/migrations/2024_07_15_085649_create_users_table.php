@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->timestamps();
             $table->string('password');
-            $table->string('remember_token', 100)->nullable();;
+            $table->rememberToken();
             $table->string('Adress');
             $table->string('Code postale');
             $table->string('ville');
+            $table->timestamps();
         });
     }
 
