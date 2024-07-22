@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('Adress');
             $table->string('Code postale');
             $table->string('ville');
+            $table->string('remember_token', 100) -> nullable();
         });
     }
 

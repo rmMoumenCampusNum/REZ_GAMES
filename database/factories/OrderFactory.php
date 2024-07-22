@@ -20,7 +20,8 @@ class OrderFactory extends Factory
     {
         return [
                 'user_id'=> 1,
-                'shipments_id' =>1,
+                'shipment_id' =>1,
+                'item_id'=>1,
                 'created_at' => now(),
                 'updated_at' => now(),
         ];

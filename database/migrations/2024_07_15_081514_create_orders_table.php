@@ -15,6 +15,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('shipment_id')->constrained();
+            $table->foreignId('item_id')->constrained();
         });
     }
 
