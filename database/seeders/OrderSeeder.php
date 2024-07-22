@@ -2,20 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CategoriesTableSeeder extends Seeder
+class OrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table('_categories')->insert([
-            'name' => 'Switch',
-            'description' => 'Console de salon créer par Nintendo',
-        ]);
+       Order::factory()->count(50)->create();
     }
 }
