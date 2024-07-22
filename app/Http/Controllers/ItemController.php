@@ -1,51 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreItemRequest;
-use App\Http\Requests\UpdateItemRequest;
 use App\Models\Item;
-use phpDocumentor\Reflection\Types\Boolean;
+
+use App\Http\Requests\UpdateItemRequest;
+use App\Http\Requests;
 
 class ItemController extends Controller
 {
-
+    // Affiche la liste des items
     public function index()
     {
-        //Affiche la liste des items //Johan
         $items = Item::all();
         return response()->json($items);
     }
 
-    public function create(Request $request)
+    // Affiche un item spécifique par son ID
+    public function show($id)
     {
-        //Validation des données
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            // Ajoutez ici d'autres champs nécessaires avec leurs règles de validation
-        ]);
-
-        // Création de l'item
-        $item = Item::create($validatedData);
-
-        // Retourner une réponse JSON
-        return response()->json($item, 201);
-    }
-
-    public function store(StoreItemRequest $request)
-    {
-        // Création de l'item
-        $item = Item::create($request->validated());
-
-        // Retourner une réponse JSON
-        return response()->json($item, 201);
-    }
-
-
-    public function show(Item $item)
-    {
-        //Affiche un item spécifique par son ID
         $item = Item::find($id);
 
         if ($item) {
@@ -55,30 +29,62 @@ class ItemController extends Controller
         }
     }
 
-    public function edit(Item $item)
+    // Crée un nouvel item
+    public function store(Request $request)
     {
-        // Retourner les données de l'item pour l'édition
-        return response()->json($item);
+
+        // Validation des données de la requête
+        $request->validate([
+            'titre' => 'required|string|max:255',
+            'Description' => 'required|string',
+            'price' => 'required|numeric',
+
+        ]);
+
+        // Création d'un nouvel item
+        $item = Item::create($request->all());
+
+        // Retourner une réponse JSON avec l'item créé
+        return response()->json($item, 201);
     }
 
-    public
-    function update(UpdateItemRequest $request, Item $item)
+    // Met à jour un item spécifique
+    public function update(Request $request, $id)
     {
-        //M.a.j item
-        $item->update($request->validated());
+        // Validation des données de la requête
+        $validated = $request->validate([
+            'titre' => 'required|string|max:255',
+            'Description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+
+        // Recherche de l'item par ID
+        $item = Item::find($id);
+
+        // Vérification si l'item existe
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
+        // Mise à jour de l'item
+        $item->update($validated);
 
         // Retourner une réponse JSON
-        return response()->json($item, 200);
+        return response()->json(['message' => 'Item updated'], 200);
     }
 
-
-    public
-    function destroy(Item $item)
+    // Supprime un item spécifique
+    public function destroy($id)
     {
-        // Suppression de l'item
+        $item = Item::find($id);
+
+        // Vérification si l'item existe
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
         $item->delete();
 
         // Retourner une réponse JSON
-        return response()->json(['message' => 'Item deleted'], 200);
+        return response()->json(['message' => 'Item delete'], 200);
     }
 }
