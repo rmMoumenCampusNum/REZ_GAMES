@@ -55,14 +55,18 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'id'=>'required',
             'name' => 'required',
-            'email' => 'required', 'created_at' => 'required|date_format:Y-m-d H:i:s',
-            'updated_at' => 'required|date_format:Y-m-d H:i:s',
+            'email' => 'required', 
+            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
         $user = User::findOrFail($id);
+
         $user->update($request->all());
-        return response()->json($user);
+        return response()->json([
+            'message' => 'User updated successfully',
+            'user' => $user,
+        ], 201);
     }
   
     /**
@@ -71,6 +75,9 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id)->delete();
-        return "user effacé";
+        return response()->json([
+                'message' => 'User deleted successfully',
+                'user' => $user,
+            ], 201);
     }
 }
