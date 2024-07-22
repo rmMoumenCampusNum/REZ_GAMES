@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ShipmentsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +15,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
 Route::post('/items', [ItemController::class, 'store']);
+Route::post('/items/{id}', [ItemController::class, 'update']);
 Route::put('/items/{id}', [ItemController::class, 'update']);
 Route::patch('/items/{id}', [ItemController::class, 'update']);
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);

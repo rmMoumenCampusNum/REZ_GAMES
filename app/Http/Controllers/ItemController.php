@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-use App\Http\Requests\UpdateItemRequest;
-use App\Http\Requests;
+
 
 class ItemController extends Controller
 {
@@ -55,8 +54,6 @@ class ItemController extends Controller
     }
 
 
-    // Affiche le formulaire d'édition pour un item spécifique
-
 
     // Met à jour un item spécifique
     public function update(Request $request, $id)
@@ -95,7 +92,7 @@ class ItemController extends Controller
 
 
         // Retourner une réponse JSON
-        return response()->json(['message' => 'Item updated'], 200);
+        return response()->json(['message' => 'Item delete'], 200);
     }
 }
 
