@@ -18,6 +18,11 @@ class ItemFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'created_at' => now(),
             'updated_at' => now(),
+            'user_id' => $this->faker->numberBetween(1, 10),
+            'category_id' => $this->faker->numberBetween(1, 10),
+            'collection_id' => $this->faker->numberBetween(1, 10),
+            'certification_id' => $this->faker->numberBetween(1, 10),
+            'name' => $this->faker->word,
         ];
     }
 }

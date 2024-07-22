@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->timestamps();
             $table->string('password');
+            $table->string('remember_token', 100)->nullable();;
             $table->string('Adress');
             $table->string('Code postale');
             $table->string('ville');

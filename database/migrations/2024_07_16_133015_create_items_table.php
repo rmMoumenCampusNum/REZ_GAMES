@@ -22,8 +22,7 @@ return new class extends Migration
             $table->foreignId('collection_id')->constrained('collections');
             $table->foreignId('certification_id')->constrained('certifications');
             $table->string('name');
-            $table->text('description');
-            $table->timestamps();
+
         });
     }
 
