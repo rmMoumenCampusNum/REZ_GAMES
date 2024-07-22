@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\OrdersController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShipmentController;
 use Illuminate\Http\Request;
@@ -11,19 +11,20 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// route Items / Johan
 
+// Route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
 Route::post('/items', [ItemController::class, 'store']);
+Route::post('/items/{id}', [ItemController::class, 'update']);
 Route::put('/items/{id}', [ItemController::class, 'update']);
-Route::patch('/items/{id}', [ItemController::class, 'update']);
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);
-Route::put('/items/{id}', [ItemController::class, 'update']);
-Route::put('/items/{id}', [ItemController::class, 'update']);
+Route::apiResource('items', ItemController::class);
 
-// Routes User
+//assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
+
+// assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 Route::delete('user/d{id}', [UserController::class, 'destroy']);
 Route::post('/user/create', [UserController::class, 'store']);
