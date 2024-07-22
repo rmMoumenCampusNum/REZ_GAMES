@@ -12,7 +12,10 @@ class Item extends Model
     protected $fillable = [
         'title',
         'description',
-        'image',
         'price',
     ];
+
+    public function categories(){
+        return $this->hasMany(Category::class, 'item_id');
+    }
 }

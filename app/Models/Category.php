@@ -10,5 +10,11 @@ class Category extends Model
     use HasFactory;
 
     public $table = '_categories';
-    public $fillable = ['name', 'description'];
+    public $fillable = ['name', 'description', 'item_id'];
+
+    public function item(){
+        return $this->belongsTo(Item::class, 'item_id');
+    }
+
+
 }

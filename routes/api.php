@@ -34,6 +34,7 @@ Route::get('/shipments/{id}', function ($id) {
 
 // Route Categories
 Route::apiResource('categories', CategoriesController::class);
+Route::apiResource('items', ItemController::class);
 
 // Route Cards
 Route::get('/card/{id}', function ($id){

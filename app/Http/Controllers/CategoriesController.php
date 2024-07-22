@@ -11,7 +11,7 @@ class CategoriesController extends Controller
     // Afficher une liste des catégories
     public function index(): JsonResponse
     {
-        $categories = Category::all();
+        $categories = Category::with('item')->get();
         return response()->json($categories);
     }
 
@@ -21,6 +21,7 @@ class CategoriesController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
+            'item_id' => 'required|exists:items,id', // Validation pour item_id
         ]);
 
         $category = Category::create($request->all());
@@ -31,7 +32,7 @@ class CategoriesController extends Controller
     // Afficher une catégorie spécifique
     public function show($id): JsonResponse
     {
-        $category = Category::findOrFail($id);
+        $category = Category::with('item')->findOrFail($id);
         return response()->json($category);
     }
 
@@ -41,6 +42,7 @@ class CategoriesController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
+            'item_id' => 'required|exists:items,id', // Validation pour item_id
         ]);
 
         $category = Category::findOrFail($id);
