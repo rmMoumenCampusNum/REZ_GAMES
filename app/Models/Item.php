@@ -14,6 +14,11 @@ class Item extends Model
         'titre',
         'Description',
         'price',
+        'user_id' ,
+        'category_id' ,
+        'collection_id' ,
+        'certification_id' ,
+        'name',
 
     ];
 
