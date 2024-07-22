@@ -9,13 +9,16 @@ class Item extends Model
 {
     use HasFactory;
 
+    public mixed $name;
     protected $fillable = [
-        'title',
-        'description',
+        'titre',
+        'Description',
         'price',
+
     ];
 
     public function categories(){
         return $this->hasMany(Category::class, 'item_id');
     }
+
 }
