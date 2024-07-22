@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\OrdersConroller;
+
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
@@ -12,6 +12,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+
+
 // route Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
@@ -21,10 +23,18 @@ Route::post('/items', [ItemController::class, 'create']);
 Route::get('/user', [UserController::class, 'showAll']);
 // assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
+Route::post('/user', [UserController::class, 'store']);
+Route::post('/user/{id}', [UserController::class, 'update']);
 
 Route::get('/orders', [OrdersController::class, 'showAllOrders']);
 
 Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
+Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
+Route::get('/orders', [OrdersController::class, 'showAllOrders']);
+Route::post('/orders', [OrdersController::class, 'store']); // Créer une commande
+Route::delete('/orders/{id}', [OrdersController::class, 'destroy']); // Supprimer une commande
+Route::put('/orders/{id}', [OrdersController::class, 'update']);
+
 Route::get('/shipments', function () {
     return "La liste des envoi";
 });
@@ -35,23 +45,23 @@ Route::get('/shipments/{id}', function ($id) {
 
 Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
 
-Route::get('/shipments', function () {
+Route::get('/shipments', function (){
     return "La liste des envoi";
 });
 
-Route::get('/shipments/{id}', function ($id) {
+Route::get('/shipments/{id}', function ($id){
     return "Fiche de l'envoi $id";
 });
 
-Route::get('/categories', function () {
-    return "liste des catégories";
+Route::get('/categories', function (){
+   return "liste des catégories";
 });
 
-Route::get('/categories/{id}', function ($id) {
-    return "Catégorie $id";
+Route::get('/categories/{id}', function ($id){
+        return "Catégorie $id";
 });
 
-Route::get('/card/{id}', function ($id) {
+Route::get('/card/{id}', function ($id){
     return "Card $id";
 });
 
