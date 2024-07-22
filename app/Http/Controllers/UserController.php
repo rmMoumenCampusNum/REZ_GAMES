@@ -20,10 +20,6 @@ class UserController extends Controller
 
         return response()->json(User::all());
     }
-
-
-
-
     /**
      * Store a newly created resource in storage.
      */
