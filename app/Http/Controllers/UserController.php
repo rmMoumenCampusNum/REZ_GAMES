@@ -11,12 +11,12 @@ class UserController extends Controller
 
     public function showOne(string $id)
     {
-        return "User controller Ok with $id";
+        return response()->json(User::findOrFail($id));
     }
     public function showAll()
     {
 
-        return "User controller Ok for all";
+        return response()->json(User::all());
 
     }
     /**
