@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Http\Requests\UpdateItemRequest;
-
+use App\Http\Requests;
 
 class ItemController extends Controller
 {
@@ -56,32 +56,49 @@ class ItemController extends Controller
 
 
     // Affiche le formulaire d'édition pour un item spécifique
-    public function edit(Item $item)
-    {
-        // Retourner les données de l'item pour l'édition
-        return response()->json($item);
-    }
+
 
     // Met à jour un item spécifique
-    public function update(UpdateItemRequest $request, Item $item)
+    public function update(Request $request, $id)
     {
+        // Validation des données de la requête
+        $validated = $request->validate([
+            'titre' => 'required|string|max:255',
+            'Description' => 'required|string',
+            'price' => 'required|numeric',
+        ]);
+
+        // Recherche de l'item par ID
+        $item = Item::find($id);
+
+        // Vérification si l'item existe
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
         // Mise à jour de l'item
-        $item->update($request->validated());
+        $item->update($validated);
 
         // Retourner une réponse JSON
-        return response()->json($item, 200);
+        return response()->json(['message' => 'Item updated'], 200);
     }
 
     // Supprime un item spécifique
-    public function destroy(Item $item)
+    public function destroy($id)
     {
-        // Suppression de l'item
-        $item->delete();
+        $item = Item::find($id);
+
+        // Vérification si l'item existe
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
+        }
+
 
         // Retourner une réponse JSON
-        return response()->json(['message' => 'Item deleted'], 200);
+        return response()->json(['message' => 'Item updated'], 200);
     }
 }
+
 
 
 

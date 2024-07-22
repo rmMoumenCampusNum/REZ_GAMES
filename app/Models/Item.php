@@ -9,6 +9,7 @@ class Item extends Model
 {
     use HasFactory;
 
+    public mixed $name;
     protected $fillable = [
         'titre',
         'Description',
