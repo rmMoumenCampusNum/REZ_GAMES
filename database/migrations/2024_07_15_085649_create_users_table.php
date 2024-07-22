@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->timestamps();
             $table->string('password');
+            $table->rememberToken();
             $table->string('Adress');
             $table->string('Code postale');
             $table->string('ville');
+            $table->timestamps();
         });
     }
 

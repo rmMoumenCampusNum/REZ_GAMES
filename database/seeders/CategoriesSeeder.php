@@ -14,7 +14,7 @@ class CategoriesSeeder extends Seeder
         $item = DB::table('items')->first();
 
         if ($item) {
-            DB::table('_categories')->insert([
+            DB::table('categories')->insert([
                 'name' => 'Switch',
                 'description' => 'Console de salon créer par Nintendo',
                 'item_id' => $item->id, // Utilisez l'ID d'un item existant
