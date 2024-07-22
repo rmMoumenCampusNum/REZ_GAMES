@@ -33,29 +33,20 @@ class ItemController extends Controller
     public function store(Request $request)
     {
 
-// Validation des données de la requête
+        // Validation des données de la requête
         $request->validate([
             'titre' => 'required|string|max:255',
             'Description' => 'required|string',
             'price' => 'required|numeric',
-
 
         ]);
 
         // Création d'un nouvel item
         $item = Item::create($request->all());
 
-        /* $item = new Item;
-        $item->titre = $request->titre;
-        $item->Description = $request->Description;
-        $item->price = $request->price;
-        $item->save(); */
-
         // Retourner une réponse JSON avec l'item créé
         return response()->json($item, 201);
     }
-
-
 
     // Met à jour un item spécifique
     public function update(Request $request, $id)
