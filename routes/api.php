@@ -1,8 +1,8 @@
 <?php
-
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\UserController;
 use app\Http\Controllers\ItemController;
+use App\Http\Controllers\CategoriesController;
 use app\Http\Controllers\ShipmentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,21 +11,24 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-
 // route Items / Johan
+
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
-Route::post('/items', [ItemController::class, 'create']);
+Route::post('/items', [ItemController::class, 'store']);
+Route::put('/items/{id}', [ItemController::class, 'update']);
+Route::patch('/items/{id}', [ItemController::class, 'update']);
+Route::delete('/items/{id}', [ItemController::class, 'destroy']);
+Route::put('/items/{id}', [ItemController::class, 'update']);
+Route::put('/items/{id}', [ItemController::class, 'update']);
 
-//assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
+
 Route::get('/user', [UserController::class, 'showAll']);
-// assignation du controleur pour la route user$id, avec comme texte d'affichage si ok ""User controller Ok with $id";
 Route::get('/user/{id}', [UserController::class, 'showOne']);
-Route::post('/user', [UserController::class, 'store']);
-Route::post('/user/{id}', [UserController::class, 'update']);
+Route::delete('user/d{id}', [UserController::class, 'destroy']);
+Route::post('/user/create', [UserController::class, 'store']);
+Route::put('/user/edit/{id}', [UserController::class, 'update']);
 
-Route::get('/orders', [OrdersController::class, 'showAllOrders']);
 
 Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
 Route::get('/orders', [OrdersController::class, 'showAllOrders']);
@@ -33,33 +36,14 @@ Route::post('/orders', [OrdersController::class, 'store']); // Créer une comman
 Route::delete('/orders/{id}', [OrdersController::class, 'destroy']); // Supprimer une commande
 Route::put('/orders/{id}', [OrdersController::class, 'update']);
 
-Route::get('/shipments', function () {
-    return "La liste des envoi";
-});
+Route::get('/shipment', [ShipmentController::class, 'showAll']);
+Route::get('/shipment/{id}', [ShipmentController::class, 'showOne']);
+Route::delete('shipment/d{id}', [ShipmentController::class, 'destroy']);
+Route::post('/shipment/create', [ShipmentController::class, 'store']);
+Route::put('/shipment/edit/{id}', [ShipmentController::class, 'update']);
 
-Route::get('/shipments/{id}', function ($id) {
-    return "Fiche de l'envoi $id";
-});
+// Route Categories
+Route::apiResource('categories', CategoriesController::class);
 
-Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
-
-Route::get('/shipments', function (){
-    return "La liste des envoi";
-});
-
-Route::get('/shipments/{id}', function ($id){
-    return "Fiche de l'envoi $id";
-});
-
-Route::get('/categories', function (){
-   return "liste des catégories";
-});
-
-Route::get('/categories/{id}', function ($id){
-        return "Catégorie $id";
-});
-
-Route::get('/card/{id}', function ($id){
-    return "Card $id";
-});
+Route::get('/card/{id}', function ($id){return "Card $id";});
 
