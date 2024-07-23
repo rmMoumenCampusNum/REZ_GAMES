@@ -10,19 +10,15 @@ class CategoriesSeeder extends Seeder
 {
     public function run()
     {
-        // Assurez-vous qu'il existe des items avant de créer des catégories
-        $item = DB::table('items')->first();
 
-        if ($item) {
-            DB::table('categories')->insert([
-                'name' => 'Switch',
-                'description' => 'Console de salon créer par Nintendo',
 
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        } else {
-            $this->command->info('No items found in items table. Please seed the items table first.');
-        }
+        DB::table('categories')->insert([
+            'name' => 'Switch',
+            'description' => 'Console de salon créer par Nintendo',
+
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('titre');
             $table->string('Description');
             $table->decimal('price', 8, 2);
-            $table->foreignId('user_id')->constrained('users');
+
             $table->foreignId('category_id')->constrained('categories');
 
 
