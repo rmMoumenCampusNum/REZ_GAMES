@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
@@ -20,7 +22,14 @@ Route::post('/items/{id}', [ItemController::class, 'update']);
 Route::put('/items/{id}', [ItemController::class, 'update']);
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);
 Route::apiResource('items', ItemController::class);
-Route::post('inscription', [AuthController::class, 'InscrisUtilisateur']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::apiResource("users", UserController::class);
+});
 
 //assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
 Route::get('/user', [UserController::class, 'showAll']);
@@ -49,6 +58,8 @@ Route::put('/shipment/edit/{id}', [ShipmentController::class, 'update']);
 Route::apiResource('categories', CategoriesController::class);
 Route::apiResource('items', ItemController::class);
 
-Route::get('/card/{id}', function ($id){return "Card $id";});
+Route::get('/card/{id}', function ($id) {
+    return "Card $id";
+});
 
 

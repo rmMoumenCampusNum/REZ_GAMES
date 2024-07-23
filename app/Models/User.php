@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Auth\AuthController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,8 +18,6 @@ class User extends Model
         'name',
         'email',
         'password',
-        'Adress',
-        'Code postale',
-        'ville',
+        'remember_token',
     ];
 }
