@@ -26,15 +26,22 @@ class Item extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Category::class);
     }
 
+
+    public function Order()
+    {
+        return $this->hasMany(Order::class);
+
+    }
 
     public function Item()
     {
-        return $this->belongsTo(Item::class);
-    }
+        return $this->belongsTo(Item::class, 'item_id');
 
+
+    }
 }
 
 
