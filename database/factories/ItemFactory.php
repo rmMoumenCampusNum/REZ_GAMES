@@ -18,7 +18,6 @@ class ItemFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'created_at' => now(),
             'updated_at' => now(),
-
             'category_id' => 1,
 
 
