@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('Adress');
-            $table->string('Code postale');
-            $table->string('ville');
+            $table->string('Adress')->nullable(); // Colonne Adress nullable
+            $table->string('Code postale')->nullable(); // Colonne Code postale nullable
+            $table->string('ville')->nullable(); // Colonne ville nullable
             $table->timestamps();
         });
     }
@@ -29,8 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users');
-        Schema::enableForeignKeyConstraints();
     }
 };

@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Définir le limiteur de taux `api`
+        RateLimiter::for('api', function ($request) {
+            return Limit::perMinute(60); // Limite à 60 requêtes par minute
+        });
     }
 }
