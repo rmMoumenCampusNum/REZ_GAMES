@@ -12,7 +12,15 @@ class User extends Model
 
 
     protected $table = 'users';
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
+    public function Shipment()
+    {
+        return $this->hasMany(Shipment::class);
+    }
 
     protected $fillable = [
         'name',

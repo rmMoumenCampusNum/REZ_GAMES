@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Shipment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,10 +14,6 @@ class ShipmentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('shipments')->insert([
-           'created_at' => now(),
-           'updated_at' => now(),
-            'user_id' => 1,
-        ]);
+        Shipment::factory()->count(10)->create();
     }
 }

@@ -2,16 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Item;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Integer;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Order>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Shipment>
  */
-class OrderFactory extends Factory
+class ShipmentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,10 +20,10 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-                'user_id'=> User::inRandomOrder()->first()->id,
-                'item_id'=> Item::inRandomOrder()->first()->id, // Sélectionne un ID aléatoire d'un Item existant,
                 'created_at' => now(),
                 'updated_at' => now(),
-        ];
+                'user_id' => User::inRandomOrder()->first()->id,
+                'order_id' => Order::inRandomOrder()->first()->id,
+            ];
     }
 }
