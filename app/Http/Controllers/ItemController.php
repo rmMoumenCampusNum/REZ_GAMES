@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+
 class ItemController extends Controller
 {
     // Affiche la liste des items
@@ -36,8 +37,6 @@ class ItemController extends Controller
             'price' => 'required|numeric',
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
-            'collection_id' => 'required|exists:collections,id',
-            'certification_id' => 'required|exists:certifications,id',
             'name' => 'required|string|max:255',
 
 
@@ -58,13 +57,6 @@ class ItemController extends Controller
             'titre' => 'required|string|max:255',
             'Description' => 'required|string',
             'price' => 'required|numeric',
-            'user_id' => 'required|exists:users,id',
-            'category_id' => 'required|exists:categories,id',
-            'collection_id' => 'required|exists:collections,id',
-            'certification_id' => 'required|exists:certifications,id',
-            'name' => 'required|string|max:255',
-
-
         ]);
 
         // Recherche de l'item par ID

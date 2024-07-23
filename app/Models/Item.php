@@ -17,9 +17,6 @@ class Item extends Model
         'user_id',
         'category_id',
 
-
-
-
     ];
 
     public function user()
@@ -32,15 +29,6 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function collection()
-    {
-        return $this->belongsTo(Collection::class);
-    }
-
-    public function certification()
-    {
-        return $this->belongsTo(Certification::class);
-    }
 
     public function Item()
     {
