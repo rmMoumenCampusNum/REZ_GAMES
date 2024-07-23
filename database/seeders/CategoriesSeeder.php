@@ -17,7 +17,7 @@ class CategoriesSeeder extends Seeder
             DB::table('categories')->insert([
                 'name' => 'Switch',
                 'description' => 'Console de salon créer par Nintendo',
-                'item_id' => $item->id, // Utilisez l'ID d'un item existant
+
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

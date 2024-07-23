@@ -19,9 +19,9 @@ return new class extends Migration
             $table->decimal('price', 8, 2);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
-            $table->foreignId('collection_id')->constrained('collections');
-            $table->foreignId('certification_id')->constrained('certifications');
-            $table->string('name');
+
+
+
 
         });
     }
