@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ItemController;
@@ -24,6 +25,13 @@ Route::delete('/items/{id}', [ItemController::class, 'destroy']);
 Route::apiResource('items', ItemController::class);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout']);
+
+// Admin routes
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('Admin', PostController::class);
+
+});
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
