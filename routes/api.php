@@ -8,10 +8,14 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// Routes publiques
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+// Routes protégées
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
 
     // Routes User
     Route::get('/users', [UserController::class, 'showAll']);
@@ -23,8 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     // Routes Orders
     Route::get('/orders', [OrdersController::class, 'showAllOrders']);
     Route::get('/orders/{id}', [OrdersController::class, 'showOneOrder']);
-    Route::post('/orders', [OrdersController::class, 'store']); // Créer une commande
-    Route::delete('/orders/{id}', [OrdersController::class, 'destroy']); // Supprimer une commande
+    Route::post('/orders', [OrdersController::class, 'store']);
+    Route::delete('/orders/{id}', [OrdersController::class, 'destroy']);
     Route::put('/orders/{id}', [OrdersController::class, 'update']);
 
     // Routes Shipments
@@ -43,11 +47,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/card/{id}', function ($id){
         return "Card $id";
     });
-
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/user', [AuthController::class, 'user']);
 });
-
-// Routes publiques
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
