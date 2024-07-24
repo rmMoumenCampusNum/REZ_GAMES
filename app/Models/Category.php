@@ -12,8 +12,8 @@ class Category extends Model
     public $table = 'categories';
     public $fillable = ['name', 'description', 'item_id'];
 
-    public function item(){
-        return $this->belongsTo(Item::class, 'item_id');
+    public function items (){
+        return $this->hasMany(Item::class);
     }
 
 

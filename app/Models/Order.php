@@ -13,8 +13,8 @@ class Order extends Model
     protected $fillable = ['user_id', 'shipments_id', 'created_at', 'updated_at'];
 
 
-    public function Item()
+    public function items ()
     {
-        return $this->hasMany(Item::class);
+        return $this->belongsToMany(Item::class, 'item_order');
     }
 }

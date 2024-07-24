@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->rememberToken();
-            $table->string('Adress');
-            $table->string('Code postale');
-            $table->string('ville');
+            $table->string('Adress')->nullable();
+            $table->string('Code postale')->nullable();
+            $table->string('ville')->nullable();;
             $table->timestamps();
         });
     }

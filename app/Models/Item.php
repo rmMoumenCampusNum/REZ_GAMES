@@ -9,40 +9,28 @@ class Item extends Model
 {
     use HasFactory;
 
-    public mixed $name;
     protected $fillable = [
         'titre',
-        'Description',
+        'description', // Assurez-vous d'ajouter toutes les colonnes que vous voulez permettre pour l'assignation en masse
         'price',
-        'user_id',
         'category_id',
-
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
+// Relation avec la table Category
     public function category()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
-
-    public function Order()
+// Relation avec la table Order
+    public function orders()
     {
-        return $this->hasMany(Order::class);
-
+        return $this->belongsToMany(Order::class, 'item_order');
     }
 
-    public function Item()
+// Relation avec la table Card
+    public function cards()
     {
-        return $this->belongsTo(Item::class, 'item_id');
-
-
+        return $this->belongsToMany(Card::class, 'card_item');
     }
 }
-
-
-

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('image');
             $table->text(column: 'description');
+            $table->foreignId('card_id')->constrained('cards')->onDelete('cascade');
+            $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
             $table->timestamps();
 
         });
