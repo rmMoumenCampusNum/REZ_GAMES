@@ -1,21 +1,33 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth; // Importer Auth
 
 class AuthController extends Controller
 {
+    // Afficher le formulaire de connexion
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    // Afficher le formulaire d'inscription
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
     // Enregistrement d'un nouvel utilisateur
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::create([
@@ -24,7 +36,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return response()->json(['message' => 'User registered successfully']);
+        Auth::login($user);
+
+        return redirect()->route('dashboard')->with('message', 'User registered successfully');
     }
 
     // Connexion d'un utilisateur
@@ -43,9 +57,11 @@ class AuthController extends Controller
             ]);
         }
 
+        Auth::login($user); // Authentifier l'utilisateur
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['token' => $token]);
+        return redirect()->route('dashboard')->with('token', $token);
     }
 
     // Déconnexion de l'utilisateur
@@ -53,7 +69,7 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return redirect()->route('login')->with('message', 'Successfully logged out');
     }
 
     // Récupérer l'utilisateur authentifié
