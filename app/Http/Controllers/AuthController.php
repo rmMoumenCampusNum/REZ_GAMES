@@ -67,11 +67,17 @@ class AuthController extends Controller
     // Déconnexion de l'utilisateur
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        // Supprimer les tokens de l'utilisateur
+        $request->user()->tokens()->delete();
+
+        // Déconnexion de la session web
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return redirect()->route('login')->with('message', 'Successfully logged out');
     }
-
     // Récupérer l'utilisateur authentifié
     public function user(Request $request)
     {

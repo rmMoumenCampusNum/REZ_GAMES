@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShipmentController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Routes de connexion et d'inscription
@@ -16,9 +17,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 
 // Routes protégées par l'authentification Sanctum
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/', function () {
-        return view('layouts/dashboard');
-    })->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Routes User
     Route::resource('users', UserController::class);

@@ -24,6 +24,7 @@ class CategoriesController extends Controller
     // Méthode pour créer une nouvelle catégorie
     public function store(Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',

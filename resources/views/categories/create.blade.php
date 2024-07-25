@@ -14,6 +14,10 @@
             <label for="description">Description</label>
             <textarea name="description" id="description" class="form-control"></textarea>
         </div>
+        <div class="form-group">
+            <label for="item_id">Item</label>
+            <input type="number" name="item_id" id="item_id" class="form-control" required>
+        </div>
         <button type="submit" class="btn btn-primary">Créer</button>
     </form>
 @endsection
