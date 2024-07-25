@@ -1,52 +1,28 @@
 <?php
-use App\Http\Controllers\OrdersController;
-use App\Http\Controllers\UserController;
-use app\Http\Controllers\ItemController;
-use app\Http\Controllers\ShipmentController;
+
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriesController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// route Items / Johan
-Route::get('/items', [ItemController::class, 'index']);
-Route::get('/items/{id}', [\app\Http\Controllers\ItemController::class, 'show']);
-
-//assignation du controleur pour la route user, avec comme texte d'affichage si ok return ['Tableau' => 'La liste des clients'];
-Route::get('/user', [UserController::class, 'showAll']);
-Route::get('/user/{id}', [UserController::class, 'showOne']);
-Route::delete('user/d{id}', [UserController::class, 'destroy']);
-Route::post('/user/create', [UserController::class, 'store']);
-Route::put('/user/edit/{id}', [UserController::class, 'update']);
-
-
-
-
-Route::get('/shipments', function () {
-    return "La liste des envoi";
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/shipments/{id}', function ($id) {
-    return "Fiche de l'envoi $id";
-});
+Route::get('/register', [RegisteredUserController::class, 'create'])
+    ->middleware('guest')
+    ->name('register');
 
-Route::get('/Categories', [\App\Http\Controllers\CategoriesController::class, 'show']);
+Route::post('/register', [RegisteredUserController::class, 'store'])
+    ->middleware('guest');
+require __DIR__.'/auth.php';
 
-Route::get('/Categories/{id}', [\App\Http\Controllers\CategoriesController::class, 'showID']);
-
-Route::get('/shipments', function (){
-    return "La liste des envoi";
-});
-
-Route::get('/shipments/{id}', function ($id){
-    return "Fiche de l'envoi $id";
-});
-
-
-
-Route::get('/card/{id}', function ($id){
-    return "Card $id";
-});

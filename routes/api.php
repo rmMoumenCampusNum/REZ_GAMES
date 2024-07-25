@@ -23,7 +23,7 @@ Route::put('/items/{id}', [ItemController::class, 'update']);
 Route::put('/items/{id}', [ItemController::class, 'update']);
 
 
-Route::get('/user', [UserController::class, 'showAll']);
+Route::get('/user', [UserController::class, 'showAll'])->name('users');
 Route::get('/user/{id}', [UserController::class, 'showOne']);
 Route::delete('user/d{id}', [UserController::class, 'destroy']);
 Route::post('/user/create', [UserController::class, 'store']);
@@ -35,6 +35,7 @@ Route::get('/orders', [OrdersController::class, 'showAllOrders']);
 Route::post('/orders', [OrdersController::class, 'store']); // Créer une commande
 Route::delete('/orders/{id}', [OrdersController::class, 'destroy']); // Supprimer une commande
 Route::put('/orders/{id}', [OrdersController::class, 'update']);
+Route::get('/orders/{id}/shipments', [OrdersController::class, 'showOrderWithShipment']);
 
 Route::get('/shipment', [ShipmentController::class, 'showAll']);
 Route::get('/shipment/{id}', [ShipmentController::class, 'showOne']);

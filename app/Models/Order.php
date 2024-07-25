@@ -10,19 +10,19 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders';
-    protected $fillable = ['user_id', 'shipments_id', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'item_id', 'shipments_id', 'created_at', 'updated_at'];
 
 
-    public function Item()
+    public function item()
     {
         return $this->hasMany(Item::class);
     }
 
-    public function Shipment(){
-        return $this->belongsTo(Shipment::class);
+    public function shipment(){
+        return $this->belongsTo(Shipment::class, 'order_id');
     }
 
-    public function User(){
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\ViewErrorBag;
 
+
 class UserController extends Controller
 {
     /**
@@ -27,14 +28,9 @@ class UserController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'Adress' => 'required|string|max:255',
-            'Code postale' => 'required|string|max:10',
-            'ville' => 'required|string|max:100',
-            'password'=> 'required|string|max:55',
-            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
-            'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed'],
         ]);
             // Create a new user with the validated data
             $user = User::create($request->all());
@@ -52,7 +48,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required', 
+            'email' => 'required',
             'created_at' => 'nullable|date_format:Y-m-d H:i:s',
             'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
@@ -64,7 +60,7 @@ class UserController extends Controller
             'user' => $user,
         ], 201);
     }
-  
+
     /**
      * Remove the specified resource from storage.
      */

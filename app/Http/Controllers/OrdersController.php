@@ -14,7 +14,7 @@ class OrdersController extends Controller
 
     public function showOneOrder ($id)
     {
-        return response()->json(Order::find($id));
+        return response()->json(Order::findOrFail($id));
     }
 
     // Créer une commande
@@ -25,7 +25,7 @@ class OrdersController extends Controller
             'user_id' => 'required|integer|exists:users,id',
             'created_at' => 'required|date_format:Y-m-d H:i:s',
             'updated_at' => 'required|date_format:Y-m-d H:i:s',
-            'shipments_id' => 'required|integer|exists:shipments,id',
+            'item_id' => 'required|integer|exists:items,id',
         ]);
 
         // Créer une nouvelle commande avec les données validées
@@ -44,7 +44,6 @@ class OrdersController extends Controller
             'user_id' => 'required|integer|exists:users,id',
             'created_at' => 'required|date_format:Y-m-d H:i:s',
             'updated_at' => 'required|date_format:Y-m-d H:i:s',
-            'shipments_id' => 'required|integer',
         ]);
 
         // Trouver la commande par son id
@@ -69,4 +68,12 @@ class OrdersController extends Controller
         // Retourner une réponse vide avec un statut 204
         return response()->json(Order::all());
     }
+    public function showOrderWithShipment($id){
+        // Récupérer la commande avec son expédition
+        $order = Order::with('shipment')->findOrFail($id);
+
+        return response()->json($order);
+    }
 }
+
+
