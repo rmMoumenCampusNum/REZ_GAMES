@@ -15,7 +15,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-// Route Items / Johan
+// Route CRUD Items / Johan
 Route::get('/items', [ItemController::class, 'index']);
 Route::get('/items/{id}', [ItemController::class, 'show']);
 Route::post('/items', [ItemController::class, 'store']);
@@ -23,14 +23,14 @@ Route::post('/items/{id}', [ItemController::class, 'update']);
 Route::put('/items/{id}', [ItemController::class, 'update']);
 Route::delete('/items/{id}', [ItemController::class, 'destroy']);
 Route::apiResource('items', ItemController::class);
+//Routes Auth //Johan
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
-// Admin routes
+Route::get('/post{id}', [PostController::class, 'show']);
+// Admin routes //Johan
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('Admin', PostController::class);
-
 });
 
 // Protected routes

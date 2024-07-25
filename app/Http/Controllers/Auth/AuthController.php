@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller; // Utilisation de Controller au lieu de Auth
+use App\Http\Sanctum\Http\Controllers\AuthController as SanctumAuthController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
