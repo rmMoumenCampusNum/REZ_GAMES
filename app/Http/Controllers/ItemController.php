@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
-
 use App\Http\Requests\UpdateItemRequest;
-use App\Http\Requests;
 
 class ItemController extends Controller
 {
@@ -14,7 +12,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return response()->json($items);
+        return view('items.index', compact('items'));
     }
 
     // Affiche un item spécifique par son ID
@@ -23,29 +21,45 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         if ($item) {
-            return response()->json($item);
+            return view('items.show', compact('item'));
         } else {
-            return response()->json(['message' => 'Item not found'], 404);
+            return redirect()->route('items.index')->with('error', 'Item not found');
         }
+    }
+
+    // Affiche le formulaire de création d'un nouvel item
+    public function create()
+    {
+        return view('items.create');
     }
 
     // Crée un nouvel item
     public function store(Request $request)
     {
-
         // Validation des données de la requête
         $request->validate([
             'titre' => 'required|string|max:255',
             'Description' => 'required|string',
             'price' => 'required|numeric',
-
         ]);
 
         // Création d'un nouvel item
         $item = Item::create($request->all());
 
-        // Retourner une réponse JSON avec l'item créé
-        return response()->json($item, 201);
+        // Redirection vers la liste des items avec un message de succès
+        return redirect()->route('items.index')->with('success', 'Item créé avec succès');
+    }
+
+    // Affiche le formulaire de modification d'un item existant
+    public function edit($id)
+    {
+        $item = Item::find($id);
+
+        if ($item) {
+            return view('items.edit', compact('item'));
+        } else {
+            return redirect()->route('items.index')->with('error', 'Item not found');
+        }
     }
 
     // Met à jour un item spécifique
@@ -63,14 +77,14 @@ class ItemController extends Controller
 
         // Vérification si l'item existe
         if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+            return redirect()->route('items.index')->with('error', 'Item not found');
         }
 
         // Mise à jour de l'item
         $item->update($validated);
 
-        // Retourner une réponse JSON
-        return response()->json(['message' => 'Item updated'], 200);
+        // Redirection vers la liste des items avec un message de succès
+        return redirect()->route('items.index')->with('success', 'Item mis à jour avec succès');
     }
 
     // Supprime un item spécifique
@@ -80,11 +94,12 @@ class ItemController extends Controller
 
         // Vérification si l'item existe
         if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
+            return redirect()->route('items.index')->with('error', 'Item not found');
         }
+
         $item->delete();
 
-        // Retourner une réponse JSON
-        return response()->json(['message' => 'Item delete'], 200);
+        // Redirection vers la liste des items avec un message de succès
+        return redirect()->route('items.index')->with('success', 'Item supprimé avec succès');
     }
 }
