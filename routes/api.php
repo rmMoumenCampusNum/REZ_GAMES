@@ -7,7 +7,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShipmentController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 
 // Routes publiques
 Route::post('/register', [AuthController::class, 'register']);
