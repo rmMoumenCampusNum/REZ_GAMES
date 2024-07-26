@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements AuthenticatableContract
 {
     use HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     protected $hidden = [
@@ -26,8 +23,13 @@ class User extends Authenticatable implements AuthenticatableContract
         'email_verified_at' => 'datetime',
     ];
 
+protected $table = 'users';
 
-    protected $table = 'users';
+    public static function create(array $array)
+    {
+        User::create($array);
+    }
+
 
     public function orders()
     {
