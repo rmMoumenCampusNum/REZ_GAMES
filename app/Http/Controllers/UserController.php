@@ -5,25 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\ViewErrorBag;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Fonction Read du CRUD
-     */
-    public function showOne(string $id)
-    {
-        return response()->json(User::findOrFail($id));
-    }
+   // Affiche la liste des items
+   public function index()
+   {
+       $users = User::all();
+       return view('users.index', compact('user'));
+   }
 
-    public function showAll()
-    {
-        return response()->json(User::all());
-    }
+   // Affiche un item spécifique par son ID
+   public function show($id)
+   {
+       $user = User::find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     */
+       if ($user) {
+           return view('users.show', compact('user'));
+       } else {
+           return redirect()->route('users.index')->with('error', 'Item not found');
+       }
+   }
+
     public function store(Request $request)
     {
         // Validate the incoming request data
