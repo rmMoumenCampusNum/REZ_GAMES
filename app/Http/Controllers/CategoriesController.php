@@ -1,27 +1,32 @@
 <?php
-
-// Déclaration du namespace de la classe CategoriesController
 namespace App\Http\Controllers;
 
 // Inclusion des modèles et classes nécessaires
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 // Déclaration de la classe CategoriesController qui hérite de Controller
 class CategoriesController extends Controller
 {
     // Méthode pour afficher une liste des catégories
-    public function index(): JsonResponse
+    public function index(): View
     {
         // Récupère toutes les catégories avec leurs relations avec 'item'
         $categories = Category::with('item')->get();
-        // Retourne les catégories sous forme de réponse JSON
-        return response()->json($categories);
+        // Retourne la vue 'categories.index' avec les catégories récupérées
+        return view('categories.index', compact('categories'));
+    }
+
+    // Méthode pour afficher le formulaire de création d'une nouvelle catégorie
+    public function create(): View
+    {
+        // Retourne la vue 'categories.create' pour créer une nouvelle catégorie
+        return view('categories.create');
     }
 
     // Méthode pour créer une nouvelle catégorie
-    public function store(Request $request): JsonResponse
+    public function store(Request $request)
     {
         // Valide les données de la requête
         $request->validate([
@@ -31,23 +36,28 @@ class CategoriesController extends Controller
         ]);
 
         // Crée une nouvelle catégorie avec les données validées
-        $category = Category::create($request->all());
+        Category::create($request->all());
 
-        // Retourne la catégorie créée sous forme de réponse JSON avec le statut 201 (Created)
-        return response()->json($category, 201);
+        // Redirige vers la liste des catégories avec un message de succès
+        return redirect()->route('categories.index')->with('success', 'Catégorie créée avec succès.');
     }
 
     // Méthode pour afficher une catégorie spécifique
-    public function show($id): JsonResponse
+    public function show(Category $category): View
     {
-        // Trouve la catégorie par son ID, incluant sa relation avec 'item'
-        $category = Category::with('item')->findOrFail($id);
-        // Retourne la catégorie trouvée sous forme de réponse JSON
-        return response()->json($category);
+        // Retourne la vue 'categories.show' avec la catégorie spécifiée
+        return view('categories.show', compact('category'));
+    }
+
+    // Méthode pour afficher le formulaire de modification d'une catégorie existante
+    public function edit(Category $category): View
+    {
+        // Retourne la vue 'categories.edit' avec la catégorie spécifiée
+        return view('categories.edit', compact('category'));
     }
 
     // Méthode pour mettre à jour une catégorie existante
-    public function update(Request $request, $id): JsonResponse
+    public function update(Request $request, Category $category)
     {
         // Valide les données de la requête
         $request->validate([
@@ -56,24 +66,20 @@ class CategoriesController extends Controller
             'item_id' => 'required|exists:items,id', // Le champ 'item_id' est requis et doit exister dans la table 'items'
         ]);
 
-        // Trouve la catégorie par son ID
-        $category = Category::findOrFail($id);
         // Met à jour la catégorie avec les données validées
         $category->update($request->all());
 
-        // Retourne la catégorie mise à jour sous forme de réponse JSON
-        return response()->json($category);
+        // Redirige vers la liste des catégories avec un message de succès
+        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès.');
     }
 
     // Méthode pour supprimer une catégorie
-    public function destroy($id): JsonResponse
+    public function destroy(Category $category)
     {
-        // Trouve la catégorie par son ID
-        $category = Category::findOrFail($id);
-        // Supprime la catégorie
+        // Supprime la catégorie spécifiée
         $category->delete();
 
-        // Retourne une réponse JSON indiquant que la catégorie a été supprimée avec succès
-        return response()->json(['message' => 'Catégorie supprimée avec succès']);
+        // Redirige vers la liste des catégories avec un message de succès
+        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès.');
     }
 }

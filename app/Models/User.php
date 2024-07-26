@@ -2,16 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Authenticatable implements AuthenticatableContract
+class User extends Authenticatable
 
 {
     use HasApiTokens, HasFactory, Notifiable;

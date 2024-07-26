@@ -15,11 +15,12 @@ class UserController extends Controller
     {
         return response()->json(User::findOrFail($id));
     }
+
     public function showAll()
     {
-
         return response()->json(User::all());
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -29,20 +30,22 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'Adress' => 'required|string|max:255',
-            'Code postale' => 'required|string|max:10',
-            'ville' => 'required|string|max:100',
+            'Adress' => 'nullable|string|max:255', // Champs nullable
+            'Code postale' => 'nullable|string|max:10', // Champs nullable
+            'ville' => 'nullable|string|max:100', // Champs nullable
             'password'=> 'required|string|max:55',
             'created_at' => 'nullable|date_format:Y-m-d H:i:s',
             'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
-            // Create a new user with the validated data
-            $user = User::create($request->all());
-            // Return a success response with the created user data
-            return response()->json([
-                'message' => 'User created successfully',
-                'user' => $user,
-            ], 201);
+
+        // Create a new user with the validated data
+        $user = User::create($request->all());
+
+        // Return a success response with the created user data
+        return response()->json([
+            'message' => 'User created successfully',
+            'user' => $user,
+        ], 201);
     }
 
     /**
@@ -52,19 +55,23 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required', 
+            'email' => 'required',
+            'Adress' => 'nullable|string|max:255', // Champs nullable
+            'Code postale' => 'nullable|string|max:10', // Champs nullable
+            'ville' => 'nullable|string|max:100', // Champs nullable
             'created_at' => 'nullable|date_format:Y-m-d H:i:s',
             'updated_at' => 'nullable|date_format:Y-m-d H:i:s',
         ]);
-        $user = User::findOrFail($id);
 
+        $user = User::findOrFail($id);
         $user->update($request->all());
+
         return response()->json([
             'message' => 'User updated successfully',
             'user' => $user,
         ], 201);
     }
-  
+
     /**
      * Remove the specified resource from storage.
      */
@@ -72,8 +79,8 @@ class UserController extends Controller
     {
         $user = User::find($id)->delete();
         return response()->json([
-                'message' => 'User deleted successfully',
-                'user' => $user,
-            ], 201);
+            'message' => 'User deleted successfully',
+            'user' => $user,
+        ], 201);
     }
 }
