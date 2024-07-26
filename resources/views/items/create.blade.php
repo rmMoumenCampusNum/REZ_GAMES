@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'Créer un item')
+@section('title', 'Créer un nouvel item')
 
 @section('content')
-    <h1>Créer un item</h1>
+    <h1>Créer un nouvel item</h1>
     <form action="{{ route('items.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" name="name" id="name" class="form-control" required>
+            <label for="titre">Name</label>
+            <input type="text" name="titre" id="titre" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <textarea name="description" id="description" class="form-control"></textarea>
+            <label for="Description">Description</label>
+            <textarea name="Description" id="Description" class="form-control" required></textarea>
         </div>
         <div class="form-group">
             <label for="price">Prix</label>

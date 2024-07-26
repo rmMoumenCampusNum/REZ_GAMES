@@ -26,7 +26,7 @@
         @foreach ($items as $item)
             <tr>
                 <td>{{ $item->id }}</td>
-                <td>{{ $item->name }}</td>
+                <td>{{ $item->titre }}</td>
                 <td>{{ $item->description }}</td>
                 <td>{{ $item->price }}</td>
                 <td>
