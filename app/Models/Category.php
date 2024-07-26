@@ -9,12 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    public $table = 'categories';
-    public $fillable = ['name', 'description', 'item_id'];
+    // Déclaration du nom de la table associée à ce modèle
+    protected $table = 'categories';
 
-    public function items (){
-        return $this->hasMany(Item::class);
+    // Déclaration des attributs pouvant être assignés en masse
+    protected $fillable = ['name', 'description'];
+
+    // Déclaration de la relation entre Category et Item
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'category_id');
     }
-
-
 }
