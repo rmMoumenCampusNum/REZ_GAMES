@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1>Items</h1>
+        <h1>Utilisateurs</h1>
         <a href="{{ route('users.create') }}" class="btn btn-primary">Ajouter un User</a>
     </div>
     @if (session('success'))
@@ -19,7 +19,7 @@
             <th>Nom</th>
             <th>Description</th>
             <th>Email</th>
-            <th>Adresse</th>
+            <th>Adress</th>
         </tr>
         </thead>
         <tbody>
