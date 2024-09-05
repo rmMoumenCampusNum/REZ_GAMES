@@ -8,12 +8,17 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// Route pour récupérer le cookie CSRF
+Route::get('sanctum/csrf-cookie', function (Request $request) {
+    return response()->json(['message' => 'CSRF cookie set']);
+});
+
 // Routes publiques
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 // Routes protégées par l'authentification
-Route::middleware('auth:sanctum')->group(function () {
+//Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'user']);
 
@@ -47,4 +52,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/card/{id}', function ($id){
         return "Card $id";
     });
-});
+//});
