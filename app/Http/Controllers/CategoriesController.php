@@ -1,28 +1,18 @@
 <?php
 namespace App\Http\Controllers;
 
-// Inclusion des modèles et classes nécessaires
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-// Déclaration de la classe CategoriesController qui hérite de Controller
 class CategoriesController extends Controller
 {
-    // Méthode pour afficher une liste des catégories
-    public function index(): View
+    // Méthode pour récupérer toutes les catégories
+    public function index()
     {
-        // Récupère toutes les catégories avec leurs relations avec 'item'
-        $categories = Category::with('item')->get();
-        // Retourne la vue 'categories.index' avec les catégories récupérées
-        return view('categories.index', compact('categories'));
-    }
-
-    // Méthode pour afficher le formulaire de création d'une nouvelle catégorie
-    public function create(): View
-    {
-        // Retourne la vue 'categories.create' pour créer une nouvelle catégorie
-        return view('categories.create');
+        // Récupère toutes les catégories
+        $categories = Category::all();
+        // Retourne les catégories au format JSON
+        return response()->json($categories);
     }
 
     // Méthode pour créer une nouvelle catégorie
@@ -30,56 +20,69 @@ class CategoriesController extends Controller
     {
         // Valide les données de la requête
         $request->validate([
-            'name' => 'required', // Le champ 'name' est requis
-            'description' => 'nullable', // Le champ 'description' est optionnel
-            'item_id' => 'required|exists:items,id', // Le champ 'item_id' est requis et doit exister dans la table 'items'
+            'name' => 'required',
+            'description' => 'nullable',
         ]);
 
-        // Crée une nouvelle catégorie avec les données validées
-        Category::create($request->all());
+        // Crée une nouvelle catégorie
+        $category = Category::create($request->all());
 
-        // Redirige vers la liste des catégories avec un message de succès
-        return redirect()->route('categories.index')->with('success', 'Catégorie créée avec succès.');
+        // Retourne la catégorie créée au format JSON avec un code 201 (Créé)
+        return response()->json($category, 201);
     }
 
     // Méthode pour afficher une catégorie spécifique
-    public function show(Category $category): View
+    public function show($id)
     {
-        // Retourne la vue 'categories.show' avec la catégorie spécifiée
-        return view('categories.show', compact('category'));
-    }
+        // Recherche la catégorie par ID
+        $category = Category::find($id);
 
-    // Méthode pour afficher le formulaire de modification d'une catégorie existante
-    public function edit(Category $category): View
-    {
-        // Retourne la vue 'categories.edit' avec la catégorie spécifiée
-        return view('categories.edit', compact('category'));
+        if ($category) {
+            // Si la catégorie existe, la retourner au format JSON
+            return response()->json($category);
+        } else {
+            // Si la catégorie n'existe pas, retourne une erreur 404
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
     }
 
     // Méthode pour mettre à jour une catégorie existante
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         // Valide les données de la requête
         $request->validate([
-            'name' => 'required', // Le champ 'name' est requis
-            'description' => 'nullable', // Le champ 'description' est optionnel
-            'item_id' => 'required|exists:items,id', // Le champ 'item_id' est requis et doit exister dans la table 'items'
+            'name' => 'required',
+            'description' => 'nullable',
         ]);
 
-        // Met à jour la catégorie avec les données validées
-        $category->update($request->all());
+        // Recherche la catégorie par ID
+        $category = Category::find($id);
 
-        // Redirige vers la liste des catégories avec un message de succès
-        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès.');
+        if ($category) {
+            // Met à jour la catégorie avec les nouvelles données
+            $category->update($request->all());
+            // Retourne la catégorie mise à jour au format JSON
+            return response()->json($category);
+        } else {
+            // Si la catégorie n'existe pas, retourne une erreur 404
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
     }
 
     // Méthode pour supprimer une catégorie
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        // Supprime la catégorie spécifiée
-        $category->delete();
+        // Recherche la catégorie par ID
+        $category = Category::find($id);
 
-        // Redirige vers la liste des catégories avec un message de succès
-        return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès.');
+        if ($category) {
+            // Supprime la catégorie
+            $category->delete();
+            // Retourne un message de succès
+            return response()->json(['message' => 'Catégorie supprimée avec succès']);
+        } else {
+            // Si la catégorie n'existe pas, retourne une erreur 404
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
     }
 }

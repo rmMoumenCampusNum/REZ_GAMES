@@ -12,7 +12,8 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::all();
-        return view('items.index', compact('items'));
+        //return view('items.index', compact('items'));
+        return response()->json($items); // Retourne les items au format JSON
     }
 
     // Affiche un item spécifique par son ID
