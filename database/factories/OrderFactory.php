@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Integer;
@@ -18,11 +19,12 @@ class OrderFactory extends Factory
      */
     public function definition(): array
     {
+        $userId = User::inRandomOrder()->first()->id;
+        $createdAt = $this->faker->date('Y-m-d');
         return [
-                'user_id'=> 1,
-                'shipments_id' =>1,
-                'created_at' => now(),
-                'updated_at' => now(),
+                'user_id'=> $userId,
+                'created' => $createdAt,
+                'updated' => $createdAt,
         ];
     }
 }

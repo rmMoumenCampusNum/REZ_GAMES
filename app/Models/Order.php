@@ -9,9 +9,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $table = 'orders';
-    protected $fillable = ['user_id', 'shipments_id', 'created_at', 'updated_at'];
-
+    protected $fillable = ['user_id', 'shipments_id'];
+    protected $dates = ['created', 'updated'];
 
     public function Item()
     {

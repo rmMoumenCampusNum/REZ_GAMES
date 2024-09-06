@@ -4,17 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Controller
 {
     public function showAllOrders ()
     {
-      return response()->json(Order::all());
+        $orders = DB::table('orders')
+            ->join('users', 'orders.user_id', '=', 'users.id')
+            ->select('orders.*', 'users.name')
+            ->get();
+      return response()->json($orders);
     }
 
     public function showOneOrder ($id)
     {
-        return response()->json(Order::find($id));
+        return response()->json(Order::findOrFail($id));
     }
 
     // Créer une commande
@@ -23,9 +28,8 @@ class OrdersController extends Controller
         // Valider les données reçues si nécessaire
         $validated = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
-            'created_at' => 'required|date_format:Y-m-d H:i:s',
-            'updated_at' => 'required|date_format:Y-m-d H:i:s',
-            'shipments_id' => 'required|integer|exists:shipments,id',
+            'created' => 'required|date_format:Y-m-d',
+            'updated' => 'required|date_format:Y-m-d',
         ]);
 
         // Créer une nouvelle commande avec les données validées
@@ -42,9 +46,8 @@ class OrdersController extends Controller
         // Valider les données reçues si nécessaire
         $validated = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
-            'created_at' => 'required|date_format:Y-m-d H:i:s',
-            'updated_at' => 'required|date_format:Y-m-d H:i:s',
-            'shipments_id' => 'required|integer',
+            'created' => 'required|date_format:Y-m-d',
+            'updated' => 'required|date_format:Y-m-d',
         ]);
 
         // Trouver la commande par son id

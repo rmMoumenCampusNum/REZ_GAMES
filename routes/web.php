@@ -18,7 +18,7 @@ Route::post('/register', [AuthController::class, 'register']); // Traiter l'insc
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum'); // Déconnexion de l'utilisateur, protégée par le middleware Sanctum
 
 // Routes protégées par l'authentification Sanctum
-Route::middleware('auth:sanctum')->group(function () {
+
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); // Page d'accueil du tableau de bord
 
     // Routes User
@@ -35,7 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Route Items
     Route::resource('items', ItemController::class); // Routes RESTful pour la gestion des items
-});
 
 // Route de test de session
 Route::get('/session-test', function () {

@@ -4,7 +4,6 @@
 <!-- Définir la section 'content' qui sera insérée dans le layout principal -->
 @section('content')
     <!-- Afficher un message de bienvenue avec le nom de l'utilisateur connecté -->
-    <h1>Bienvenue sur votre Dashboard, {{ $user->name }}</h1>
     <!-- Afficher un message indiquant que l'utilisateur est connecté au Back Office -->
     <p>Vous êtes connecté au Back Office !</p>
 @endsection

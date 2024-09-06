@@ -11,12 +11,16 @@ class ShipmentSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
+        // Récupérer un order_id existant depuis la table orders
+        $orderId = DB::table('orders')->inRandomOrder()->value('id'); // Sélectionne un id aléatoire
+
+        // Insérer des données dans la table shipments
         DB::table('shipments')->insert([
-           'created_at' => now(),
-           'updated_at' => now(),
-            'user_id' => 1,
+            'order_id' => $orderId,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

@@ -24,5 +24,6 @@ class User extends Authenticatable
         'Adress',
         'Code postale',
         'ville',
+        'timestamps'
     ];
 }
