@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 // Importation des contrôleurs nécessaires
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrdersController;
@@ -10,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 
 // Routes de connexion et d'inscription
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login'); // Afficher le formulaire de connexion
@@ -18,25 +17,16 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 Route::post('/register', [AuthController::class, 'register']); // Traiter l'inscription de l'utilisateur
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum'); // Déconnexion de l'utilisateur, protégée par le middleware Sanctum
 
-Route::view('/', 'welcome');
 // Routes protégées par l'authentification Sanctum
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard'); // Page d'accueil du tableau de bord
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
     // Routes User
     Route::resource('users', UserController::class); // Routes RESTful pour la gestion des utilisateurs
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
     // Routes Orders
     Route::resource('orders', OrdersController::class); // Routes RESTful pour la gestion des commandes
 
-Route::view('/Items','Items' );
-Route::view('/index', 'index');
     // Routes Shipments
     Route::resource('shipments', ShipmentController::class); // Routes RESTful pour la gestion des envois
 
@@ -47,8 +37,6 @@ Route::view('/index', 'index');
     Route::resource('items', ItemController::class); // Routes RESTful pour la gestion des items
 });
 
-
-require __DIR__ . '/auth.php';
 // Route de test de session
 Route::get('/session-test', function () {
     session(['key' => 'value']); // Enregistrer une clé de session avec une valeur
