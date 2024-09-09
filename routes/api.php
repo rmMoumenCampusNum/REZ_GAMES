@@ -45,7 +45,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
     // Route Categories
     Route::apiResource('categories', CategoriesController::class);
-
+    Route::get('/categories/{id}/items', [CategoriesController::class, 'getItemsByCategory']);
     // Route Items
     Route::apiResource('items', ItemController::class);
 

@@ -22,9 +22,9 @@ class ItemController extends Controller
         $item = Item::find($id);
 
         if ($item) {
-            return view('items.show', compact('item'));
+            return response()->json($item);
         } else {
-            return redirect()->route('items.index')->with('error', 'Item not found');
+            return response()->json(['error' => 'Item not found'], 404);
         }
     }
 

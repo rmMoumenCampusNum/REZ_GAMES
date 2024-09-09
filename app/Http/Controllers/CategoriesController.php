@@ -14,7 +14,21 @@ class CategoriesController extends Controller
         // Retourne les catégories au format JSON
         return response()->json($categories);
     }
+    // Méthode pour récupérer les articles d'une catégorie spécifique
+    public function getItemsByCategory($id)
+    {
+        // Recherche la catégorie par ID
+        $category = Category::find($id);
 
+        if (!$category) {
+            return response()->json(['message' => 'Catégorie non trouvée'], 404);
+        }
+
+        // Récupère les articles associés à cette catégorie
+        $items = $category->items; // Assure-toi que la relation 'items' est définie dans le modèle Category
+
+        return response()->json($items);
+    }
     // Méthode pour créer une nouvelle catégorie
     public function store(Request $request)
     {
